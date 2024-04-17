@@ -23,9 +23,10 @@ def main():
     os.mkdir(f'{current_dir}/dns')
     os.mkdir(f'{current_dir}/network')
     os.mkdir(f'{current_dir}/spidering')
+    
+    # Blast off DNS recon and host discovery
     dns_recon(HOST)
     probe()
-#os.system("dnsrecon -d google.com)
 
 if __name__ == '__main__':
     main()
