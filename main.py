@@ -16,11 +16,6 @@ def probe():
             url_list.append(line.rstrip())
     os.system(f'httpx -l dns/subfinder_output -rl 5 -fc 404 -sc -location -server -o dns/httpx_output')
 
-
-
-
-
-
 def main():
     current_dir = os.getcwd() # Get current working directory
 
