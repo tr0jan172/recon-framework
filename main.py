@@ -1,13 +1,15 @@
 import os
 import threading
 
+print("Welcome to tr0jan's recon framework!\n")
 HOST = input("What is the target? ")
 
 def dns_recon(domain):
     '''This function will perform DNS related tools'''
-    #os.system(f'amass enum -d {domain} -dir dns/amass_scan')
-    #os.system(f'dnsenum {domain} > dns/dnsenum_output')
-    os.system(f'subfinder -d {domain} -all -o dns/subfinder_output')
+    #os.system(f'amass enum -d {domain} -dir dns/amass_scan &')
+    #os.system(f'dnsenum {domain} > dns/dnsenum_output &')
+    os.system(f'subfinder -d {domain} -all -o dns/subfinder_output &')
+    print("Executing DNS enumeration...")
 
 def probe():
     url_list = []
@@ -25,8 +27,8 @@ def main():
     os.mkdir(f'{current_dir}/spidering')
     
     # Blast off DNS recon and host discovery
-    dns_recon(HOST)
-    probe()
+    dnsReconThread = threading.Thread(target=dns_recon(HOST))
+    probeThread = threading.Thread(target=probe())
 
 if __name__ == '__main__':
     main()
